@@ -12,7 +12,6 @@ LLVM Icon <br/>
 18th November, 2021
 
 ---
-class: 'text-2xl'
 ---
 
 <h1 class="text-amber-300">GSoC 2021</h1>
@@ -30,8 +29,8 @@ My mentors were:
 - Raphael Isemann
 
 </v-click>
+
 ---
-class: 'text-2xl'
 ---
 
 <h1 class="text-amber-300">What is the Clang Static Analyzer?</h1>
@@ -48,7 +47,6 @@ Examples of bugs may include null-pointer de-reference, un-closed files, leaked 
 Explain the diagram, mention that the cases are indicative -->
 
 ---
-class: 'text-2xl'
 ---
 
 The CSA tries to have no (low) false positives. This means:
@@ -59,7 +57,6 @@ The CSA tries to have no (low) false positives. This means:
 This is different from the model followed by some other static analysis systems, such as the one in Rust.
 
 ---
-class: 'text-2xl'
 ---
 
 <h1 class="text-amber-300">It's Checkers all the way down!</h1>
@@ -82,8 +79,8 @@ Checkers can:
 Roughly speaking, <span class="text-blue-400">data</span> stands for <span class=text-red-300>constraints</span> on the possible values of a variable (or expression) at some point in the program. Also, we can store <span class="text-blue-400">metadata</span> to help dealing with complex scenarios.
 
 </v-click>
+
 ---
-class: 'text-2xl'
 ---
 
 For dealing with smart-pointers, we have currently have two checkers:
@@ -94,12 +91,11 @@ For dealing with smart-pointers, we have currently have two checkers:
 This de-coupling allows us to have <span class="text-teal-400">multiple</span> checkers to model the various smart-pointers, while having a *single checker emit the bug reports*.
 
 ---
-class: 'text-2xl'
 layout: tee
 ---
 
-<h1 class="text-amber-300">How is it modelled?</h1>
-<div></div>
+<h1>How is it modelled?</h1>
+<div />
 
 `SmartPtrModelling` models the behaviour of `std::unique_ptr` by keeping track of the <span class="text-teal-400 italic">nullity of the raw-pointer inside the smart-pointer</span>.
 
@@ -134,3 +130,29 @@ void bar(unique_ptr<int> ptr) {
     }
 }
 ```
+
+---
+---
+
+<h1>What is there to model?</h1>
+<div />
+
+<div class="text-3xl text-emerald-400 font-extrabold">Everything!</div>
+
+<v-click>
+
+When we are modelling a C++ class like `std::unique_ptr`, we need to model all aspects of it. This includes modelling at least all <span class="text-blue-300">member</span> functions, <span class="text-blue-300">constructors</span>, and <span class="text-blue-300">destructors</span>.
+
+</v-click>
+
+<v-click>
+
+The aim of modelling a class in a checker is to <span class="text-blue-300">add</span> information which is specific to the semantics of the class at hand.
+
+</v-click>
+
+<v-click>
+
+This information is not necessarily discoverable automatically because the source code <span class="text-red-400">may not be available</span>. After all, the interface to a C++ library is via the header file, which may not contain all the code. 
+
+</v-click>
