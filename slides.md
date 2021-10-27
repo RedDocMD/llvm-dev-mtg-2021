@@ -52,3 +52,29 @@ The CSA tries to have no (low) false positives. This means:
 - Absence of bug reports by the CSA does <span class="text-red-400">not</span> indicate absence of bugs.
 
 This is different from the model followed by some other static analysis systems, such as the one in Rust.
+
+---
+class: 'text-2xl'
+---
+
+<h1 class="text-amber-300">It's Checkers all the way down!</h1>
+<div></div>
+
+Checkers are the backbone of the CSA. Checkers can:
+
+- Create data
+- Modify existing data
+- Use the data to detect bugs
+
+Roughly speaking, <span class="text-blue-400">data</span> stands for <span class=text-red-300>constraints</span> on the possible values of a variable (or expression) at some point in the program. Also, we can store <span class="text-blue-400">metadata</span> to help dealing with complex scenarios.
+
+---
+class: 'text-2xl'
+---
+
+For dealing with smart-pointers, we have currently have two checkers:
+
+1) `SmartPtrModelling`, which actually creates the requisite data
+2) `SmartPtrChecker`, which uses the data to detect null-dereferences
+
+This de-coupling allows us to have <span class="text-teal-400">multiple</span> checkers to model the various smart-pointers, while having a *single checker emit the bug reports*.
