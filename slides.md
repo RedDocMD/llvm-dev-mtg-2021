@@ -39,4 +39,16 @@ The Clang Static Analyzer (CSA) is a static-analysis framework that uses <span c
 </div>
 
 <!-- Key point being the symbolic-execution, that is, the code is not actually run
-Examples of bugs may include null-pointer de-reference, un-closed files, leaked memory, etc. -->
+Examples of bugs may include null-pointer de-reference, un-closed files, leaked memory, etc. 
+Explain the diagram, mention that the cases are indicative -->
+
+---
+class: 'text-2xl'
+---
+
+The CSA tries to have no (low) false positives. This means:
+
+- A bug reported by the CSA is <span class="text-red-400">definitely</span> a bug.
+- Absence of bug reports by the CSA does <span class="text-red-400">not</span> indicate absence of bugs.
+
+This is different from the model followed by some other static analysis systems, such as the one in Rust.
