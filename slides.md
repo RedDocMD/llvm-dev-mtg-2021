@@ -18,6 +18,8 @@ class: 'text-2xl'
 
 The talk revolves around my Google Summer of Code project this year under The LLVM Foundation. The project was <span class="font-bold text-light-blue-300">Making Smart Pointer Checkers default checkers in the Static Analyzer</span>.
 
+<v-click>
+
 My mentors were:
 
 - Artem Dergachev (Apple Inc.)
@@ -25,6 +27,7 @@ My mentors were:
 - Valeriy Savchenko
 - Raphael Isemann
 
+</v-click>
 ---
 class: 'text-2xl'
 ---
@@ -34,7 +37,7 @@ class: 'text-2xl'
 
 The Clang Static Analyzer (CSA) is a static-analysis framework that uses <span class="font-bold text-light-blue-300">symbolic execution</span> over all possible paths in a program to flag various buggy scenarios.
 
-<div class="flex justify-center pt-3 h-85">
+<div v-click class="flex justify-center pt-3 pb-2 h-85">
   <img src="/imgs/csa-intro.png">
 </div>
 
@@ -60,14 +63,23 @@ class: 'text-2xl'
 <h1 class="text-amber-300">It's Checkers all the way down!</h1>
 <div></div>
 
-Checkers are the backbone of the CSA. Checkers can:
+Checkers are the backbone of the CSA. 
+
+<v-click>
+
+Checkers can:
 
 - Create data
 - Modify existing data
 - Use the data to detect bugs
 
+</v-click>
+
+<v-click>
+
 Roughly speaking, <span class="text-blue-400">data</span> stands for <span class=text-red-300>constraints</span> on the possible values of a variable (or expression) at some point in the program. Also, we can store <span class="text-blue-400">metadata</span> to help dealing with complex scenarios.
 
+</v-click>
 ---
 class: 'text-2xl'
 ---
