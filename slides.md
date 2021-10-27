@@ -90,3 +90,45 @@ For dealing with smart-pointers, we have currently have two checkers:
 2) `SmartPtrChecker`, which uses the data to detect null-dereferences
 
 This de-coupling allows us to have <span class="text-teal-400">multiple</span> checkers to model the various smart-pointers, while having a *single checker emit the bug reports*.
+
+---
+class: 'text-2xl'
+layout: tee
+---
+
+<h1 class="text-amber-300">How is it modelled?</h1>
+<div></div>
+
+`SmartPtrModelling` models the behaviour of `std::unique_ptr` by keeping track of the <span class="text-teal-400 italic">nullity of the raw-pointer inside the smart-pointer</span>.
+
+::left::
+
+```cpp{1-5,11|1,6-11|all}
+void foo() {
+    unique_ptr<int> ptr = make_unique<int>(13);
+    // ptr definitely is not null now.
+    cout << *ptr << "\n";
+    // This statement is safe.
+    ptr.reset();
+    // ptr now is definitely null.
+    magicFunc(*ptr);
+    // This statement is definitely a 
+    // null-ptr dereference.
+}
+```
+
+::right::
+
+```cpp{none|1-4,11|1,5-11|all}
+void bar(unique_ptr<int> ptr) {
+    // At this point we know nothing about ptr
+    *ptr;
+    // Since we aren't sure, we emit no report here
+    if (!ptr) {
+        // We are now sure that ptr is null here
+        magicFunc(*ptr);
+        // This statement is definitely a 
+        // null-ptr dereference.
+    }
+}
+```
