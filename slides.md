@@ -11,7 +11,7 @@ colorSchema: 'dark'
 <div class="text-5xl text-light-300 pt-5">Clang Static Analyzer:<br/>A Tryst with Smart Pointers</div>
 <div class="text-3xl pt-15 text-amber-300">Deep Majumder</div>
 <div class="text-2xl pt-2 text-amber-300">Indian Institute of Technology, Kharagpur</div>
-<div class="flex justify-center h-35 pt-10"><img src="/imgs/wyvern.png" /></div>
+<div class="flex justify-center h-30 pt-10"><img src="/imgs/wyvern.png" /></div>
 <div class="pt-4 text-blue-300">LLVM Developers' Meeting</div>
 <div class="pt-1 text-blue-300">November 17, 2021</div>
 
