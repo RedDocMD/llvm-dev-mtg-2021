@@ -9,10 +9,10 @@ colorSchema: 'dark'
 ---
 
 <div class="text-5xl text-light-300">Clang Static Analyzer:<br/>A Tryst with Smart Pointers</div>
-<div class="text-3xl pt-20 text-amber-300">Deep Majumder</div>
+<div class="flex justify-center h-30 pt-10"><img src="/imgs/wyvern.png" /></div>
+<div class="text-3xl pt-10 text-amber-300">Deep Majumder</div>
 <div class="text-xl pt-2 text-amber-300">Indian Institute of Technology, Kharagpur</div>
-LLVM Icon <br/>
-18th November, 2021
+<div class="pt-3 text-blue-300">17th November, 2021</div>
 
 ---
 ---
@@ -234,5 +234,15 @@ void bad() {
 </v-click>
 
 ---
-layout: end
 ---
+
+<h1>Closure</h1>
+<div />
+
+<v-clicks>
+
+- We have a almost complete model for `std::unique_ptr` in `SmartPtrModelling`
+- The current modelling provides a framework for modelling other smart-pointers, such as `std::shared_ptr` or `std::weak_ptr`.
+- New developers are very much welcome! Please feel free to hit us up on the cfe-dev mailing list.
+
+</v-clicks>
