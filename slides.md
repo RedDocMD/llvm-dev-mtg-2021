@@ -199,8 +199,9 @@ The destructor for `std::unique_ptr` is (very) roughly as follows:
 
 ```cpp
 ~unique_ptr() {
-    if (rawPtr)
-        get_deleter()(rawPtr);
+    auto &rawPtr = innerPtr.getPtr();
+    if (rawPtr != nullptr)
+        get_deleter()(std::move(rawPtr));
         // This defaults to `delete rawPtr;`
 }
 ```
@@ -222,7 +223,7 @@ But as a side-effect, the following code's leak warning (which comes a different
 ```cpp
 void bad() {
     auto smart = std::unique_ptr<int>(new int(13));
-    auto raw = new int(29);
+    auto *raw = new int(29);
     // There is a leak here.
     // But that warning gets suppressed!
 }
